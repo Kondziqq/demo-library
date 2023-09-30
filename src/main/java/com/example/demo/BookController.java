@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,13 +31,13 @@ class BookController {
         bookRepository.save(book);
     }
 
+    @DeleteMapping
     void deleteById(Long id) {
-        // TODO homework
-        // bookRepository.delete(id);
+        bookRepository.deleteById(id);
     }
 
-    List<BookEntity> findByAuthor(String author) {
-        // TODO homework
-        return null;
+    @GetMapping("/{author}")
+    List<BookEntity> findByAuthor(@PathVariable String author) {
+        return bookRepository.findByAuthor(author);
     }
 }

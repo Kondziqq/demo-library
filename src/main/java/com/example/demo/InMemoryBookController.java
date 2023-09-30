@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,13 +32,13 @@ class InMemoryBookController {
         inMemoryBookRepository.save(book);
     }
 
+    @DeleteMapping
     void deleteById(Long id) {
-        // TODO homework
-        // bookRepository.delete(id);
+        inMemoryBookRepository.deleteById(id);
     }
 
-    List<BookEntity> findByAuthor(String author) {
-        // TODO homework
-        return null;
+    @GetMapping("/filter")
+    List<BookEntity> findByAuthor(@RequestParam String author) {
+        return inMemoryBookRepository.findByAuthor(author);
     }
 }
