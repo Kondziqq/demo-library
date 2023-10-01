@@ -36,8 +36,8 @@ class BookController {
         bookRepository.deleteById(id);
     }
 
-    @GetMapping("/{author}")
-    List<BookEntity> findByAuthor(@PathVariable String author) {
+    @GetMapping("/filter")
+    List<BookEntity> findByAuthor(@RequestParam String author) {
         return bookRepository.findByAuthor(author);
     }
 }
